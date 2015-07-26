@@ -1,0 +1,4 @@
+SHORTCUTS FROM LINUX UBUNTU
+
+SUPER + S = show workspaces
+SUPER = open dash
