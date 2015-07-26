@@ -1,0 +1,116 @@
+NOTES FROM LINUX BASIC TERMINAL
+VISIE COURSE
+
+xgd
+=============================
+
+=> xdg-open
+open default web browse
+
+=> xdg-open http://www.google.com
+open google
+
+cat
+=============================
+
+=> ctrl+c
+quit cat
+
+=> ctrl+d
+done a file
+
+=> cat > doc.txt
+write file without vi
+
+=> cat text.txt
+only read the file instead of terminal
+
+=> cat old.txt > new.txt
+duplicate / same as cp
+
+diff
+=============================
+shows difference between files
+
+vi
+=============================
+
+=> vi texto.txt
+create a doc
+
+=> :x no vim
+exit and save
+
+mysql
+=============================
+
+=> sudo apt-get install mysql-server
+install mysql 
+(you will be asked to enter and confirm root password)
+
+=> mysql -uroot -proot
+insert username and password to access mysql
+
+=> CREATE DATABASE tuts;
+create a tuts name database
+
+=> SHOW DATABASES;
+show databases in mysql
+
+=> USE tuts;
+selects a database
+
+=> SHOW tables;
+shows tables into a database
+
+=> CREATE TABLE IF NOT EXISTS users (user_id int(5) NOT NULL AUTO_INCREMENT, user_name varchar(100) NOT NULL, PRIMARY KEY(user_id));
+create a table if not exists and define columns
+
+=> describe users
+show detailed information about table columns
+
+=> mysql -uroot -proot tuts < script.sql
+execute a command inside tuts database
+
+=> mysql -uroot -proot tuts < script.sql > list.txt
+save the contnt from sql command into a txt file
+
+ls
+=============================
+
+=> ls > list.txt
+save the list content in a txt file
+
+=> ls notexist > erro.txt
+don't save into txt because dir not exist
+
+=> ls notexist > erro.txt 2> saveerror.txt
+save the error into second txt file
+
+rm
+=============================
+
+=> rm noexiste 2> /dev/null
+discard the error msg
+
+twidge
+=============================
+
+=> sudo apt-get install twidge
+install twitter cliente for command line
+
+=> twidge setup
+setup authorization
+
+=> twidge update
+update twitter
+
+=> twidge lsrecent
+list recents twitter
+
+=> twidge lsreplies
+list latest replies
+
+
+
+
