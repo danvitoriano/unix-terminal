@@ -1,6 +1,81 @@
 NOTES FROM LINUX BASIC TERMINAL
 VISIE COURSE
 
+
+whoami
+=============================
+
+=> whoami
+returns the username before @
+
+
+hostname
+=============================
+
+=> hostname
+returns the hostname after @
+
+
+~
+=============================
+
+=> ~
+shortcut for the home folder (/home/danvitoriano)
+
+
+pwd
+=============================
+
+=> pwd
+returns the folder's name
+~/Documents
+
+
+cd
+=============================
+
+=> cd Desktop
+change dir to Desktop folder
+
+=> cd ..
+one level up
+
+
+cp
+=============================
+
+=> cp old.txt new.txt
+copy file
+
+=> cp file.txt newfolder
+copy file to folder
+
+=> cp -r dir
+recursive copy dir
+copy even if there are files inside
+
+
+touch
+=============================
+
+=> touch new.txt
+create a file
+
+
+mkdir
+=============================
+
+=> mkdir docs
+create docs folder
+
+
+tab
+=============================
+
+=> cd Desk+(tab key)
+complete the command
+
+
 xgd
 =============================
 
@@ -9,6 +84,7 @@ open default web browse
 
 => xdg-open http://www.google.com
 open google
+
 
 cat
 =============================
@@ -31,18 +107,35 @@ duplicate / same as cp
 => cat > /dev/null
 write a text to null
 
+
 diff
 =============================
+
+=> diff dev.txt ux.txt
 shows difference between files
+
 
 vi
 =============================
 
-=> vi texto.txt
+=> sudo apt-get install vim
+install vim editor
+
+=> vi text.txt
 create a doc
 
-=> :x no vim
+=> :x
 exit and save
+
+=> :q
+quit
+
+=> :w
+save
+
+=> :w!
+force save or a command
+
 
 mysql
 =============================
@@ -78,8 +171,34 @@ execute a command inside tuts database
 => mysql -uroot -proot tuts < script.sql > list.txt
 save the contnt from sql command into a txt file
 
+
+man
+=============================
+
+=> man ls
+returns manual from a command
+
+=> q
+quit manual
+
+=> h
+manual help
+
+
 ls
 =============================
+
+=> ls *.txt
+list all txt files
+
+=> ls -l
+list with more details
+
+=> ls novo.txt -l -h (ls novo.txt -lh)
+list file with more details and human readable
+
+=> ls -a (-all)
+list all (abbr and full command)
 
 => ls > list.txt
 save the list content in a txt file
@@ -90,14 +209,68 @@ don't save into txt because dir not exist
 => ls notexist > erro.txt 2> saveerror.txt
 save the error into second txt file
 
+
+clear
+=============================
+
+=> clear
+clear command line screen
+
+
+mv
+=============================
+
+=> mv file.txt folder1
+move file to folder
+
+=> mv file.txt new.txt
+rename file
+
+
 rm
 =============================
+
+=> rm old.txt
+remove file - delete
 
 => rm noexiste 2> /dev/null
 discard the error msg
 
 => rm notexist 2>> erro.txt
 save error after the last line
+
+=> rm -r folder
+recursive remove 
+removes folder if there are files inside
+but asks if there are blocked files
+
+=> rm folder
+remove only empty folders
+
+=> rm folder -rf
+removes even if there are blocked files
+
+
+chmod
+=============================
+
+=> chmod -w file.txt
+change permission
+-w: remove write permission for all users
+
+-rw -rw -r--
+user - group - all
+
+
+trash
+=============================
+
+=> trash file.txt
+move to trash folder if it's installed
+
+=> trash -list
+list trash folder files
+
 
 twidge
 =============================
@@ -117,6 +290,7 @@ list recents twitter
 => twidge lsreplies
 list latest replies
 
+
 date
 =============================
 
@@ -133,6 +307,7 @@ save date after the last line
 save sate and error into a txt file
 the ';' separate 2 commands
 
+
 grep
 =============================
 
@@ -148,6 +323,7 @@ search for an expression in a log file
 
 => grep ¨/wp-admin" /var/log/apache2/access.log > wpadmin.txt
 search for an expression in a log file and write found results in a txt
+
 
 gedit
 =============================
@@ -167,6 +343,7 @@ return first and third field (-f) separated from ";" delimitator (-d)
 => cut -d " " -f 1,3 syslog.txt > syslog2.txt
 return first and third field (-f) separated from ";" delimitator (-d) and save results into a new txt file
 
+
 sort
 =============================
 
@@ -176,10 +353,18 @@ order a file
 => sort -u syslog.txt
 order a file listing unique values
 
-|
+
+| (pipe)
 =============================
 
 => grep ¨/wp-admin" /var/log/apache2/access.log | cut -d " " -f 1 | sort -u > pipe.txt
 search a file for a text, cut the delimited field, sort unique values and save into a txt
 the pipe (|) links command after command before save into a file
+
+
+curl
+=============================
+
+=> curl http://www.compracerta.com.br/ford
+return the html code from an url
 
