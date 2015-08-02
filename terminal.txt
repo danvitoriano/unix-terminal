@@ -259,7 +259,13 @@ change permission
 -w: remove write permission for all users
 
 -rw -rw -r--
-user - group - all
+user - group - all - execute
+
+=> chmod +x file
+permission to execute a file
+
+=> sh text.txt
+permission to execute and execute a file in runtime
 
 
 trash
@@ -308,6 +314,14 @@ save sate and error into a txt file
 the ';' separate 2 commands
 
 
+echo
+=============================
+
+=> echo Hoje é `date`
+'echo' returns a command
+the `` execute a command in line
+ 
+
 grep
 =============================
 
@@ -323,6 +337,16 @@ search for an expression in a log file
 
 => grep ¨/wp-admin" /var/log/apache2/access.log > wpadmin.txt
 search for an expression in a log file and write found results in a txt
+
+=> grep -e "\s$" list.txt
+filter using an regex for any tab '\s' at the end of a line '$'
+
+=> grep -v -e "\s$" list.txt
+filter only the odd lines (lines that does not have the search regex)
+
+=> grep -e "\s$" list.txt | sed -e "s/\t/;/" | cut -d ";" -f 1 | sort -u
+returns lines with tabs at the line, replace tab '\t' for ';' with sed, cut first field delimited with ';'
+and sort unique values '-u'
 
 
 gedit
@@ -362,9 +386,105 @@ search a file for a text, cut the delimited field, sort unique values and save i
 the pipe (|) links command after command before save into a file
 
 
+sed
+=============================
+
+=> sed -e "s/.*a/b"
+stream editor filter with pipeline command
+-e uses an expression
+s substitute '.' anything '*' anytime before 'a' for 'b' (regex)
+
+=> sed -e "s/title/p/g"
+replace title for p and 'g' means general: for all occurrences, not only in the first
+
+
 curl
 =============================
 
-=> curl http://www.compracerta.com.br/ford
+=> curl http://www.fullcircle.com.br
 return the html code from an url
+
+=> curl -s http://www.fullcircle.com.br > index.html
+copy html code to a file and -s quiet the return info
+
+=> curl -s http://www.fullcircle.com.br | grep 'html'
+returns the lines where 'html' was found
+
+=> curl -s http://www.fullcircle.com.br | grep 'images/portfolio' | sed -e "s/.*alt//" | cut -d '"' -f 2
+returns the lines with 'images/portfolio' and apply regex that substitutes anything anytime before 'alt' for empty and
+cut the second field using the '"' delimiter
+
+=> vi getportname
+and insert the following code:
+curl -s http://www.fullcircle.com.br | grep 'images/portfolio' | grep $1 | sed -e "s/.*alt//" | cut -d '"' -f 2
+the '$1' is a variable inside the command
+now give file an execute permission:
+=> chmod +x getportname
+execute file passing a word for search instead of variable:
+=> ./getportname sesi
+and it returns 'sesi' if the word was found
+
+=> vi site.txt
+=> ./getportname sesi
+=> sh site.txt
+should returns sesi
+'sh' is the same as +x (chmod to execute a file)
+
+
+for (shell script)
+=============================
+
+=> vi getall
+1	for i in a b c; do
+2		echo $i
+3	done
+=> chmod +x getall
+=> ./getall
+a
+b
+c
+
+=> vi getall
+1	for i in `cat getportname.txt`; do
+2		echo "$i;"
+3		./getportname
+4	done
+
+=> vi feeds.txt
+1 http://frontendpro.com.br/feed/
+2 http://visie.com.br/feed/
+
+=> vi feedcatcher
+1 for $feed in `cat feeds.txt`; do
+2	echo "<h1> post titles in $feed</h1>"
+3	curl -s $feed | grep '<title>' | tail -n +2 | sed -e "s/title/p/g"
+4 done
+
+=> chmod +x feedcatcher
+=> ./feedcacther > posttitles.txt
+
+
+history
+=============================
+
+=> history
+shows the command history
+
+=> history | grep mysql
+find one command in history
+
+=> !109
+execute the command with following number in history
+
+
+tail
+=============================
+
+=> tail -n +2
+output the last part of a file
+'-n' output the last K line instead of 10
+'+K' output lines starting with K number
+
+=> curl -s http://frontendpro.com.br/feed/ | grep '<title>' | tail -n +2
+return title tags from feed starting at second line
 
