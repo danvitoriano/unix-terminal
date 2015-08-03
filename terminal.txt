@@ -1,5 +1,5 @@
-NOTES FROM LINUX BASIC TERMINAL
-VISIE COURSE
+NOTES FROM LINUX BASIC TERMINAL CLI
+TRANSCRIPTION FROM ELCIO@VISIE.COM.BR VIDEO COURSE
 
 
 whoami
@@ -136,6 +136,14 @@ save
 => :w!
 force save or a command
 
+=> i or insert
+insert text
+
+=> esc + /text
+search for text into vi editor
+'n' search next
+'N' search previous
+
 
 mysql
 =============================
@@ -171,6 +179,15 @@ execute a command inside tuts database
 => mysql -uroot -proot tuts < script.sql > list.txt
 save the contnt from sql command into a txt file
 
+=> SELECT user_id FROM users;
+shows registers from user_id column
+
+=> INSERT INTO users (user_name) VALUES ('danilo');
+insert values into columns
+
+=> INSERT INTO users (user_name) VALUES ('john'),('maria'),('joe');
+insert multiple values into columns
+
 
 man
 =============================
@@ -199,6 +216,7 @@ list file with more details and human readable
 
 => ls -a (-all)
 list all (abbr and full command)
+files that begins with '.' are hidden files
 
 => ls > list.txt
 save the list content in a txt file
@@ -267,6 +285,11 @@ permission to execute a file
 => sh text.txt
 permission to execute and execute a file in runtime
 
+=> chmod g-rw text.txt
+remove read and write from group
+
+=> chmod o-rw text.txt
+remove read and write from others
 
 trash
 =============================
@@ -488,3 +511,101 @@ output the last part of a file
 => curl -s http://frontendpro.com.br/feed/ | grep '<title>' | tail -n +2
 return title tags from feed starting at second line
 
+
+sudo
+=============================
+
+=> sudo su
+change user to super user (root)
+
+=> adduser curso
+add a new user
+you are going to be asked about password and other data, after, confirm
+
+=> su curso
+change user
+
+
+ssh
+=============================
+
+=> sudo apt-get install ssh
+install ssh secure shell to connect one machine into another
+
+=> ssh danvitoriano@localhost
+connect to localhost
+you should confirm only one time and input password
+
+=> ssh-keygen
+generate a ssh key
+
+=> cd .ssh
+enter the .ssh hidden folder with keys:
+id_rsa: cryptography
+id_rsa.pub: descryptography
+
+=> curl fullcircle.com.br/id_rsa.pub > authorized_keys
+insert into authorized_keys file the public key at fullcircle.com.br
+
+=> chmod g-rw authorized_keys | chmod o-rw authorized_keys
+remove read and write permissions, only user has it
+
+=> ssh curso@curso.fullcircle.com.br
+access named host
+
+=> vi script
+1 echo "SELECT * FROM users" | mysql -uroot -proot tuts | sed -e "s/\t/;/g"
+execute mysql script and replace tabs for ';'
+
+=> ssh curso@curso.fullcircle.com.br ./script > posts.csv
+execute script at other server and save results into tabular file
+
+=> vi savespreadsheet
+1 cd ~/Desktop/cursos/linux
+2 ssh curso@curso.fullcircle.com.br ./script > posts.csv
+
+=> chmod +x savespreadsheet
+change permission to execute
+
+=> ./savespreadsheet
+execute and save spreadsheet in specified folder
+
+=> exit
+exit shell
+
+
+hosts
+=============================
+
+=> sudo vi /etc/hosts
+127.0.0.1 curso.fullcircle.com.br
+
+
+ping
+=============================
+
+=> ping curso.fullcircle.com.br
+ctrl + c: quit
+
+
+crontab
+=============================
+
+=> crontab -e
+open the crontab editor
+
+=> 20 * * * * /home/danvitoriano/Desktop/savespreadsheet
+at 20 minute, from any hour, from any month day, from any month, from any week day, execute file
+
+
+sftp
+=============================
+
+=> sftp curso@localhost
+opens a ftp connection
+
+=> get posts.csv
+get a file from server and save in actual folder
+
+=> ctrl + d
+exit sftp
