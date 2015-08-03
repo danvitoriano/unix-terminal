@@ -1,4 +1,11 @@
 SHORTCUTS FROM LINUX UBUNTU
+transcription from elcio@visie.com.br video course
 
 SUPER + S = show workspaces
 SUPER = open dash
+
+alt + f2 = run a command
+alt + f4 = close window
+
+file > connect to server
+sftp://curso@curso.fullcircle.com.br
